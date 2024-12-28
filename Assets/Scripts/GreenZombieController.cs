@@ -4,12 +4,6 @@ using UnityEngine;
 public class GreenZombieController : ZombieController
 {
     public Animator animator;
-    public float greenZombieAttackDistance = 2f;
-    public override void Start()
-    {
-        base.Start();
-        attackDistance = greenZombieAttackDistance;
-    }
     
     public override void Walk()
     {

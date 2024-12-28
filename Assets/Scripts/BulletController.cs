@@ -8,7 +8,7 @@ public class BulletController : MonoBehaviour
         if (other.gameObject.GetComponent<ZombieController>() != null)
             {
                 Destroy(gameObject);
-                other.gameObject.GetComponent<ZombieController>().setKill = true;
+                other.gameObject.GetComponent<ZombieController>().health -= 1;
             }
     }
 }

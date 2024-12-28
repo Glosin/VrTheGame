@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -8,7 +9,7 @@ using UnityEditor;
 public class ZombieController : MonoBehaviour
 {
     public float attackDistance = 1.5f;
-    public bool setKill = false;
+    public float health = 7f;
     private Camera _mainCamera;
     private NavMeshAgent _navMeshAgent;
     
@@ -20,7 +21,7 @@ public class ZombieController : MonoBehaviour
 
     public void Update()
     {
-        if (!setKill)
+        if (health > 0)
         {
             Walk();
             float distance = Vector3.Distance(transform.position, _mainCamera.transform.position);
@@ -44,8 +45,6 @@ public class ZombieController : MonoBehaviour
         _navMeshAgent.isStopped = true;
         _navMeshAgent.ResetPath();
         _navMeshAgent.speed = 0f;
-        Destroy(gameObject.GetComponent<Rigidbody>());
-        Destroy(gameObject.GetComponent<CapsuleCollider>());
-        Destroy(gameObject.GetComponent<NavMeshAgent>());
+        Destroy(gameObject, 3f);
     }
 }

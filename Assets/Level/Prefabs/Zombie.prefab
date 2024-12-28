@@ -957,7 +957,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5.275}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2506540347545408033}
@@ -1036,7 +1036,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0.5
+  m_Speed: 0.7
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1083,10 +1083,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bbaf181ddb5f94c8a64467eb811f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 1.5
-  setKill: 0
+  attackDistance: 2
+  health: 10
   animator: {fileID: 813604824439256570}
-  greenZombieAttackDistance: 2
 --- !u!1 &2999181023271435456
 GameObject:
   m_ObjectHideFlags: 0
