@@ -1876,6 +1876,10 @@ PrefabInstance:
       propertyPath: m_EnableFarCasting
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8877177980677234388, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_SortNearTargetsAfterTargetFilter
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9173983156334026967, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -3190,6 +3194,14 @@ PrefabInstance:
     - target: {fileID: 7578052120315635769, guid: cd1cdffadce5825428b80519a160ea0f, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607460214347616682, guid: cd1cdffadce5825428b80519a160ea0f, type: 3}
+      propertyPath: m_Volume
+      value: 0.584
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607460214347616682, guid: cd1cdffadce5825428b80519a160ea0f, type: 3}
+      propertyPath: MaxDistance
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

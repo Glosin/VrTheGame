@@ -7,6 +7,7 @@ public class Lamp : MonoBehaviour
     public Material defaultMaterial;
     public Material lamptMaterial;
     public Light light;
+    public AudioClip lampSound;
     
     private bool _active = true;
 
@@ -24,6 +25,11 @@ public class Lamp : MonoBehaviour
 
     public void Toggle()
     {
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+
+        if (!audioSource.isPlaying)
+            audioSource.PlayOneShot(lampSound);
+        
         if (_active)
             DisableLight();
         else

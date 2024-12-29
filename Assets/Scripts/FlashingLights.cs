@@ -23,13 +23,14 @@ public class FlashingLights : MonoBehaviour
         }
 
         foreach (var light in lights)
+        {
             light.GetComponent<Lamp>().EnableLight();
+            light.GetComponent<AudioSource>().Stop();
+        }
         
         int randomIndexx = Random.Range(0, lights.Length);
         lights[randomIndexx].GetComponent<Lamp>().DisableLight();
-        Debug.Log(lights.Length);
         lights = lights.Where(obj => obj != lights[randomIndexx]).ToArray();
-        Debug.Log(lights.Length);
         
     }
 }
