@@ -23,5 +23,6 @@ public class GreenZombieController : ZombieController
     {
         base.Kill();
         animator.SetTrigger("ZombieKill");
+        FindAnyObjectByType<FlashingLights>().GetComponent<FlashingLights>().active = false;
     }
 }

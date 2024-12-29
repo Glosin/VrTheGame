@@ -6,7 +6,7 @@ public class BookPickup : MonoBehaviour
     public GameObject zombie;
     public GameObject spawnPoint;
     public float spawnCount = 1;
-    
+    public FlashingLights flashingLights;
     public void SpawnZombie()
     {
         if (spawnCount > 0)
@@ -20,7 +20,7 @@ public class BookPickup : MonoBehaviour
     {
         float delay = Random.Range(2f, 5f);
         yield return new WaitForSeconds(delay);
-        
+        flashingLights.Flash();
         Instantiate(zombie, spawnPoint.transform.position, Quaternion.identity);
     }
 }

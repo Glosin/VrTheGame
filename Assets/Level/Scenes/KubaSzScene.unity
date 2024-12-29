@@ -2222,22 +2222,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2971616454529878097, guid: cd1cdffadce5825428b80519a160ea0f, type: 3}
   m_PrefabInstance: {fileID: 808405686}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &587974040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587974038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 486305938b57d9b45b4b3139540085f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lampObject: {fileID: 1845874913}
-  defaultMaterial: {fileID: 2100000, guid: 42697696543fb4f43b83f85719ac25ed, type: 2}
-  lamptMaterial: {fileID: 2100000, guid: d3051747cf045dc43bf7a177dc0349d2, type: 2}
-  light: {fileID: 1111192321}
 --- !u!1001 &592178760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3203,10 +3187,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5261604948232993812, guid: cd1cdffadce5825428b80519a160ea0f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7578052120315635769, guid: cd1cdffadce5825428b80519a160ea0f, type: 3}
       propertyPath: m_Name
       value: Lamp
@@ -3214,10 +3194,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7578052120315635769, guid: cd1cdffadce5825428b80519a160ea0f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 587974040}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd1cdffadce5825428b80519a160ea0f, type: 3}
 --- !u!1 &864580216
 GameObject:
@@ -3257,6 +3234,7 @@ MonoBehaviour:
   - {fileID: 1891570081}
   - {fileID: 1423972900}
   - {fileID: 1469639867}
+  active: 0
 --- !u!4 &864580218
 Transform:
   m_ObjectHideFlags: 0
@@ -3589,11 +3567,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1967728587}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 98.5}
---- !u!108 &1111192321 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 5261604948232993812, guid: cd1cdffadce5825428b80519a160ea0f, type: 3}
-  m_PrefabInstance: {fileID: 808405686}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1138441120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3954,18 +3927,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 587974040}
-        m_TargetAssemblyTypeName: Lamp, Assembly-CSharp
-        m_MethodName: DisableLight
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -4100,9 +4061,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89e8e99c0b270ce45b2386c6284063be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 0}
+  zombie: {fileID: 2794873304973261069, guid: caf8f942521fd0547a7605c92fba62c2, type: 3}
   spawnPoint: {fileID: 1167767188}
   spawnCount: 1
+  flashingLights: {fileID: 864580217}
 --- !u!1 &1263158169 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7578052120315635769, guid: cd1cdffadce5825428b80519a160ea0f, type: 3}
@@ -5769,11 +5731,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811707662}
   m_CullTransparentMesh: 1
---- !u!1 &1845874913 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 244711359785694502, guid: cd1cdffadce5825428b80519a160ea0f, type: 3}
-  m_PrefabInstance: {fileID: 808405686}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1862283839
 GameObject:
   m_ObjectHideFlags: 0
