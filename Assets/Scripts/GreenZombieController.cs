@@ -23,6 +23,7 @@ public class GreenZombieController : ZombieController
     {
         base.Kill();
         animator.SetTrigger("ZombieKill");
+        gameObject.GetComponent<AudioSource>().Stop();
         FindAnyObjectByType<FlashingLights>().GetComponent<FlashingLights>().active = false;
     }
 }

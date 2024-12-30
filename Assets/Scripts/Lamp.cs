@@ -5,29 +5,40 @@ public class Lamp : MonoBehaviour
 {
     public GameObject lampObject;
     public Material defaultMaterial;
-    public Material lamptMaterial;
+    public Material lampMaterial;
     public Light light;
+    public AudioSource audioSource;
     public AudioClip lampSound;
+    public AudioClip lampSound2;
     
     private bool _active = true;
 
     public void DisableLight()
     {
-        lampObject.GetComponent<Renderer>().material = defaultMaterial;
         light.enabled = false;
+        if (lampObject != null)
+            lampObject.GetComponent<Renderer>().material = defaultMaterial;
+    }
+    public void DestroyLight()
+    {
+        audioSource.volume = 0.8f;
+        audioSource.maxDistance = 100f;
+        audioSource.PlayOneShot(lampSound2);
+        audioSource.maxDistance = 3f;
+        audioSource.volume = 0.5f;
+        DisableLight();
     }
     
     public void EnableLight()
     {
-        lampObject.GetComponent<Renderer>().material = lamptMaterial;
         light.enabled = true;
+        if (lampObject != null)
+            lampObject.GetComponent<Renderer>().material = lampMaterial;
     }
 
     public void Toggle()
     {
-        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-
-        if (!audioSource.isPlaying)
+        if (audioSource!= null && !audioSource.isPlaying)
             audioSource.PlayOneShot(lampSound);
         
         if (_active)

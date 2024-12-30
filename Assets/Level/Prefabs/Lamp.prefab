@@ -1237,7 +1237,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1270,7 +1270,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -1658,9 +1658,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lampObject: {fileID: 244711359785694502}
   defaultMaterial: {fileID: 2100000, guid: 42697696543fb4f43b83f85719ac25ed, type: 2}
-  lamptMaterial: {fileID: 2100000, guid: d3051747cf045dc43bf7a177dc0349d2, type: 2}
+  lampMaterial: {fileID: 2100000, guid: d3051747cf045dc43bf7a177dc0349d2, type: 2}
   light: {fileID: 5261604948232993812}
+  audioSource: {fileID: 8607460214347616682}
   lampSound: {fileID: 8300000, guid: e1ee00e3bc8e0b54dacbfd0ee0d1f82f, type: 3}
+  lampSound2: {fileID: 8300000, guid: b082e9490edfdbc44ba900059f0ccae0, type: 3}
 --- !u!82 &8607460214347616682
 AudioSource:
   m_ObjectHideFlags: 0
