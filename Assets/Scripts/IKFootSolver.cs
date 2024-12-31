@@ -19,6 +19,8 @@ public class IKFootSolver : MonoBehaviour
 
     public Vector3 footRotOffset;
     public float footYPosOffset = 0.1f;
+    public AudioSource audioSource;
+    public AudioClip[] AudioClips;
 
     public float rayStartYOffset = 0;
     public float rayLength = 1.5f;
@@ -51,6 +53,7 @@ public class IKFootSolver : MonoBehaviour
         {
             if (Vector3.Distance(newPosition, info.point) > stepDistance && !otherFoot.IsMoving() && lerp >= 1)
             {
+                audioSource.PlayOneShot(AudioClips[Random.Range(0, AudioClips.Length)]);
                 lerp = 0;
                 Vector3 direction = Vector3.ProjectOnPlane(info.point - currentPosition,Vector3.up).normalized;
 

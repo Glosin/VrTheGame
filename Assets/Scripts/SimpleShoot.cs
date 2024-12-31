@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR;
+using CommonUsages = UnityEngine.XR.CommonUsages;
+using InputDevice = UnityEngine.XR.InputDevice;
 
 [AddComponentMenu("Nokobot/Modern Guns/Simple Shoot")]
 public class SimpleShoot : MonoBehaviour
@@ -32,6 +35,7 @@ public class SimpleShoot : MonoBehaviour
     public Magazine magazine;
     public GameObject magazineInteractor;
     public XRBaseInteractor socketInteractor;
+    private bool _availableButtonMagazine = false;
 
     private bool _hasSlide = true;
     public void RemoveButtonMagazine()
@@ -42,10 +46,16 @@ public class SimpleShoot : MonoBehaviour
     
         StartCoroutine(DeactivateMagazineInteractorWithDelay());
     }
+    public void ChangeAvailableButtonMagazine(bool value)
+    {
+        _availableButtonMagazine = value;
+    }
+    
     
     private IEnumerator DeactivateMagazineInteractorWithDelay()
     {
         yield return new WaitForSeconds(1f); // Wait for 1 second
+        _availableButtonMagazine = true;
         magazineInteractor.SetActive(true); // Deactivate after the delay
     }
 
@@ -53,6 +63,19 @@ public class SimpleShoot : MonoBehaviour
     {
         _hasSlide = true;
         audioSource.PlayOneShot(reload);
+    }
+
+    void Update()
+    {
+        if (_availableButtonMagazine && magazine != null)
+        {
+            if (InputDevices.GetDeviceAtXRNode(XRNode.RightHand)
+                    .TryGetFeatureValue(CommonUsages.primaryButton, out bool isPressed) && isPressed)
+            {
+                RemoveButtonMagazine();
+                _availableButtonMagazine = false;
+            }
+        }
     }
     
     void Start()

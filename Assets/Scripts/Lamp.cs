@@ -27,6 +27,7 @@ public class Lamp : MonoBehaviour
         audioSource.maxDistance = 3f;
         audioSource.volume = 0.5f;
         DisableLight();
+        FindAnyObjectByType<FlashingLights>().DropFromLightsArray(gameObject.GetComponent<Lamp>());
     }
     
     public void EnableLight()

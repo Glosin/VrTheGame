@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class FlashingLights : MonoBehaviour
 {
     public GameObject[] lights;
@@ -34,7 +34,10 @@ public class FlashingLights : MonoBehaviour
         yield return new WaitForSeconds(2f);
         int randomIndexx = Random.Range(0, lights.Length);
         lights[randomIndexx].GetComponent<Lamp>().DestroyLight();
-        lights = lights.Where(obj => obj != lights[randomIndexx]).ToArray();
-        
+    }
+
+    public void DropFromLightsArray(Lamp lamp)
+    {
+        lights = lights.Where(obj => obj.GetComponent<Lamp>() != lamp).ToArray();
     }
 }
