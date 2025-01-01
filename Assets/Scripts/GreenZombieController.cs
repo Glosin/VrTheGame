@@ -11,19 +11,14 @@ public class GreenZombieController : ZombieController
         animator.SetTrigger("ZombieWalk");
     }
 
-    public override void Attack()
-    {
-        animator.SetTrigger("ZombieAttack");
-    }
     public override void StopAttack()
     {
         animator.SetTrigger("ZombieWalk");
     }
+    
     public override void Kill()
     {
         base.Kill();
         animator.SetTrigger("ZombieKill");
-        gameObject.GetComponent<AudioSource>().Stop();
-        FindAnyObjectByType<FlashingLights>().GetComponent<FlashingLights>().active = false;
     }
 }
