@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Anchor
   - Magazine
+  - Gun
+  - Flashlight
+  - Book
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,7 @@ TagManager:
   - UI
   - Grab Interactable
   - Player
-  - 
+  - IgnoreNavMesh
   - 
   - 
   - 
