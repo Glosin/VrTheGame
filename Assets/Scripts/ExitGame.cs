@@ -8,8 +8,8 @@ public class ExitGame : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && door.opening)
-        { 
-            SceneManager.LoadScene(1);
+        {
+            LoadScene(2);
         }
     }
 
@@ -20,5 +20,10 @@ public class ExitGame : MonoBehaviour
         #else
             Application.Quit(); // Quit the application
         #endif
+    }
+
+    public void LoadScene(int index)
+    {
+        SceneManager.LoadSceneAsync(index);
     }
 }

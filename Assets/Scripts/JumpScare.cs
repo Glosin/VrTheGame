@@ -21,6 +21,6 @@ public class JumpScare : MonoBehaviour
     IEnumerator NewSceneMode()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }
