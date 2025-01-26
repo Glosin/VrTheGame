@@ -3,56 +3,100 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.XR.Interaction.Toolkit;
+using Random = UnityEngine.Random;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 public class ZombieController : MonoBehaviour
 {
-    public float attackDistance = 1.5f;
-    public float health = 7f;
+    public int level;
+    public float attackDistance, health, attackCooldown;
+    public Animator animator;
+    public AudioSource audioSourceIdle, audioSourceActions;
+    public AudioClip[] audioIdle, audioHit;
     private Camera _mainCamera;
     private NavMeshAgent _navMeshAgent;
-    private bool _isAttacking = false;
+    private bool _isAttacking, _isWalking;
+    private float _lastAttackTime;
     
     public virtual void Start()
     {
         _mainCamera = Camera.main;
         _navMeshAgent = transform.GetComponent<NavMeshAgent>();
+        health = 100f * level;
     }
 
     public void Update()
     {
-        if (health > 0 && !_isAttacking)
+        if (!(health > 0)) return;
+        if (!audioSourceIdle.isPlaying) PlayRandomClip(audioSourceIdle, audioIdle);
+        
+        if (!_isAttacking)
         {
-            Walk();
-            float distance = Vector3.Distance(transform.position, _mainCamera.transform.position);
-            if (distance < attackDistance)
-                Attack();
+            if (!_isWalking) Walk();
+            _navMeshAgent.SetDestination(_mainCamera.transform.position);
         }
-        else if (!_isAttacking)
+
+        
+        var distance = Vector3.Distance(transform.position, _mainCamera.transform.position);
+        if (distance < attackDistance)
+        {
+            _isAttacking = true;
+            if (_isWalking) WalkStop();;
+            if (Time.time >= _lastAttackTime + attackCooldown) Attack();
+            
+        }
+        else _isAttacking = false;
+    }
+
+    public void Walk()
+    {
+        _isWalking = true;
+        animator.SetBool("ZombieWalk", true);
+        _navMeshAgent.isStopped = false;
+    }
+
+    public void WalkStop()
+    {
+        _isWalking = false;
+        animator.SetBool("ZombieWalk", false);
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.ResetPath();
+    }
+    public void Attack()
+    {
+        _lastAttackTime = Time.time;
+        animator.SetTrigger("ZombieAttack");
+        FindAnyObjectByType<Player>().Hit(level * 5f);
+    }
+
+    public void Hit()
+    {
+        if (!audioSourceActions.isPlaying) PlayRandomClip(audioSourceActions, audioHit);
+        
+        health -= 100f;
+        if (health <= 0)
             Kill();
+        else
+            animator.SetTrigger("ZombieHit");
     }
 
-    public virtual void Walk()
+    public void PlayRandomClip(AudioSource source, AudioClip[] clips)
     {
-        _navMeshAgent.SetDestination(_mainCamera.transform.position);
+        var clip = clips[Random.Range(0, clips.Length)];
+        source.clip = clip;
+        source.Play();
     }
-
-    public virtual void Attack()
+    public void Kill()
     {
-        _isAttacking = true;
-        FindAnyObjectByType<JumpScare>().JumpScareStart();
-        Destroy(gameObject);
-    }
-    public virtual void StopAttack() {}
-
-    public virtual void Kill()
-    {
+        audioSourceActions.Play();
         _navMeshAgent.isStopped = true;
         _navMeshAgent.ResetPath();
         _navMeshAgent.speed = 0f;
-        gameObject.GetComponent<AudioSource>().Stop();
+        audioSourceIdle.Stop();
         FindAnyObjectByType<FlashingLights>().GetComponent<FlashingLights>().active = false;
+        animator.SetTrigger("ZombieKill");
+        FindAnyObjectByType<ScoreController>().AddScore(50);
         Destroy(gameObject, 3f);
     }
 }

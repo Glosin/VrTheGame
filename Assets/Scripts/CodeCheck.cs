@@ -7,6 +7,7 @@ public class CodeCheck : MonoBehaviour
     public XRSocketInteractorTag[] XRSocketInteractor;
     public GameObject[] codeCheck;
     public Door door;
+    public ScoreController scoreController;
 
     public void Check()
     {
@@ -16,5 +17,6 @@ public class CodeCheck : MonoBehaviour
                 return;
         }
         door.opening = true;
+        scoreController.AddScore(1000);
     }
 }
