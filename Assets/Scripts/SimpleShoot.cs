@@ -35,6 +35,7 @@ public class SimpleShoot : MonoBehaviour
     public Magazine magazine;
     public GameObject magazineInteractor;
     public XRBaseInteractor socketInteractor;
+    public bool infiniteAmmoPerk = false;
     private bool _availableButtonMagazine = false;
 
     private bool _hasSlide = true;
@@ -116,7 +117,10 @@ public class SimpleShoot : MonoBehaviour
     //This function creates the bullet behavior
     void Shoot()
     {
-        magazine.magazineSize--;
+        if (!infiniteAmmoPerk)
+        {
+            magazine.magazineSize--;
+        }
         audioSource.PlayOneShot(fireSound);
             
         if (muzzleFlashPrefab)

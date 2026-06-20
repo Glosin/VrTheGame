@@ -16,15 +16,16 @@ public class FlashingLights : MonoBehaviour
 
     public IEnumerator ChangeFlash()
     {
-        while (active)
+        float duration = 10f;
+        float elapsedTime = 0f;
+        while (active && elapsedTime < duration)
         {
             yield return new WaitForSeconds(0.05f);
             int randomIndex = Random.Range(0, lights.Length);
             lights[randomIndex].GetComponent<Lamp>().Toggle();
-            flashlight.GetComponent<Lamp>().Toggle();
+            elapsedTime += 0.05f;
         }
 
-        flashlight.GetComponent<Lamp>().EnableLight();
         foreach (var light in lights)
         {
             light.GetComponent<Lamp>().EnableLight();

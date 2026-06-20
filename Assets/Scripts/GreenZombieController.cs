@@ -3,22 +3,4 @@ using UnityEngine;
 
 public class GreenZombieController : ZombieController
 {
-    public Animator animator;
-    
-    public override void Walk()
-    {
-        base.Walk();
-        animator.SetTrigger("ZombieWalk");
-    }
-
-    public override void StopAttack()
-    {
-        animator.SetTrigger("ZombieWalk");
-    }
-    
-    public override void Kill()
-    {
-        base.Kill();
-        animator.SetTrigger("ZombieKill");
-    }
 }

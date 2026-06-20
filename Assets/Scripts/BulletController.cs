@@ -6,9 +6,8 @@ public class BulletController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<ZombieController>() != null)
-            {
-                Destroy(gameObject);
-                other.gameObject.GetComponent<ZombieController>().health -= 1;
-            }
+        {
+            other.gameObject.GetComponent<ZombieController>().Hit();
+        }
     }
 }

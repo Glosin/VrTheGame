@@ -21,6 +21,8 @@ public class JumpScare : MonoBehaviour
     IEnumerator NewSceneMode()
     {
         yield return new WaitForSeconds(2f);
+        PlayerPrefs.SetInt("score", FindAnyObjectByType<ScoreController>().score);
+        PlayerPrefs.Save();
         SceneManager.LoadScene(2);
     }
 }
