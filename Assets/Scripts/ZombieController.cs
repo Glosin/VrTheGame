@@ -16,14 +16,16 @@ public class ZombieController : MonoBehaviour
     public AudioClip[] audioIdle, audioHit;
     private Camera _mainCamera;
     private NavMeshAgent _navMeshAgent;
-    private bool _isAttacking, _isWalking;
+    private bool _isAttacking, _isWalking, _isDead;
     private float _lastAttackTime;
+    private Player _player;
     
     public virtual void Start()
     {
         _mainCamera = Camera.main;
         _navMeshAgent = transform.GetComponent<NavMeshAgent>();
         health = 100f * level;
+        _player = FindAnyObjectByType<Player>();
     }
 
     public void Update()
@@ -67,14 +69,14 @@ public class ZombieController : MonoBehaviour
     {
         _lastAttackTime = Time.time;
         animator.SetTrigger("ZombieAttack");
-        FindAnyObjectByType<Player>().Hit(level * 5f);
+        _player.Hit(level * 5f);
     }
 
     public void Hit()
     {
         if (!audioSourceActions.isPlaying) PlayRandomClip(audioSourceActions, audioHit);
         
-        health -= 100f;
+        health -= _player.damage;
         if (health <= 0)
             Kill();
         else
@@ -89,6 +91,8 @@ public class ZombieController : MonoBehaviour
     }
     public void Kill()
     {
+        if (_isDead) return;
+        _isDead = true;
         audioSourceActions.Play();
         _navMeshAgent.isStopped = true;
         _navMeshAgent.ResetPath();

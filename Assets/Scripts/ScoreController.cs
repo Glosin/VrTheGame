@@ -11,4 +11,9 @@ public class ScoreController : MonoBehaviour
         score += points;
         scoreText.text = $"Score: {score}";
     }
+    public void SubtractPoints(int points)
+    {
+        score -= points;
+        scoreText.text = $"Score: {score}";
+    }
 }

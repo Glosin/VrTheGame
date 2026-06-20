@@ -57,15 +57,12 @@ public class TrapController : MonoBehaviour
             #endregion
             
             #region Music
-
             if (type == Options.Music && !_activatedMusic)
             {
                 audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]);
                 _activatedMusic = true;
                 StartCoroutine(AllowNextMusic());
             }
-                
-            
             #endregion
 
             #region Lights
