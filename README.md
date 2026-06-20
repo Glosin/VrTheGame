@@ -7,9 +7,9 @@
 ![Widok główny](images/screenshot-1.png)
 
 ### 2. Rozgrywka
-![Rozgrywka](images/screenshot-2.png)
+![Rozgrywka](images/screenshot-2.jpg)
 
 ### 3. Dodatkowy screen
-![Dodatkowy screen](images/screenshot-3.png)
+![Dodatkowy screen](images/screenshot-3.jpg)
 
 
